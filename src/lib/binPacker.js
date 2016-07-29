@@ -9,7 +9,7 @@ export default function binPacker(blocks, area, margin=0) {
 
   while(!blocks.every(b => !!b.fit)) {
     const nextBlocks = blocks.filter(b => !b.fit);
-    areas.push(new Packer(area.w, area.h, margin))
+    areas.push(new Packer(area.w, area.h, margin));
     areas[areas.length-1].fit(nextBlocks);
   }
 
