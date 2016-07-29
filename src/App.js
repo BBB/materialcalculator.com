@@ -29,6 +29,7 @@ class App extends Component {
       margin: 5,
       areas: [],
     };
+    binPackerWorker.postMessage(this.state);
 
     binPackerWorker.addEventListener('message', e => {
       this.setState({
