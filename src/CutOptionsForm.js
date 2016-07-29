@@ -73,7 +73,7 @@ const CutOptionsForm = ({ onChange, formData }) => (
               label="Quantity"
               inputProps={{
                 type: 'number',
-                value: cut.h,
+                value: cut.count,
                 onChange: (e) => updateValue('count', e.target.value),
               }}
             />
