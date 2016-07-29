@@ -10,7 +10,9 @@
 }
 
 .cut {
-  padding: 15px 25px;
+  padding: 1em 0;
+  margin-bottom: 1em;
+  border-bottom: 1px solid #eee;
 }
 
 .cut button:hover {
