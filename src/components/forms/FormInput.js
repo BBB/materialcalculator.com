@@ -4,7 +4,7 @@ import './FormInput.css';
 
 const FormInput = ({ label, inputProps }) => (
   <div className="FormInput">
-    {label && <label for={inputProps.name}>{label + ': '}</label>}
+    {label && <label htmlFor={inputProps.name}>{label + ': '}</label>}
     <input
       {...inputProps}
     />
