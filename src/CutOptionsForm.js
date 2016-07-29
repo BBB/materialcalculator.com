@@ -49,7 +49,7 @@ const CutOptionsForm = ({ onChange, formData }) => (
       formData.cuts.map((cut, ix) => {
         const updateValue = (prop, value) => {
           cut[prop] = Number(value);
-          this.setState(formData);
+          onChange(formData);
         }
         return (
           <div key={ix} className="cut">
