@@ -1,0 +1,17 @@
+div.FormInput {
+  margin-bottom: 0.5em;
+  padding-left: 0.5em;
+}
+
+div.FormInput input {
+  background: #e5ebdf;
+  color: #b5bbaf;
+  border: 0;
+  padding: 0.5em 1em;
+  border-radius: 3px;
+}
+
+div.FormInput label {
+  display: inline-block;
+  min-width: 100px;
+}

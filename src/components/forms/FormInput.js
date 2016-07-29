@@ -1,8 +1,10 @@
 import React from 'react';
 
+import './FormInput.css';
+
 const FormInput = ({ label, inputProps }) => (
-  <div>
-    {label && <label>{label + ': '}</label>}
+  <div className="FormInput">
+    {label && <label for={inputProps.name}>{label + ': '}</label>}
     <input
       {...inputProps}
     />
