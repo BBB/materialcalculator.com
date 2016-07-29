@@ -25,8 +25,7 @@ function isValid(cuts, materialSize) {
   return true;
 }
 
-// eslint-disable-next-line
-function onmessage(e) {
+self.addEventListener('message', function(e) {
   const { cuts, materialSize, margin } = e.data;
   let areas = [];
   if (isValid(cuts, materialSize)) {
@@ -38,5 +37,5 @@ function onmessage(e) {
     }, [])
     areas = binPacker(finalCuts, materialSize, margin - 1);
   }
-  postMessage(areas);
-}
+  self.postMessage(areas);
+}, false);

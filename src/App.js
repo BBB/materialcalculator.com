@@ -4,7 +4,11 @@ import './App.css';
 import CutRenderer from './CutRenderer';
 import CutOptionsForm from './CutOptionsForm';
 
-var myWorker = new Worker('worker.js');
+import BinPackerWorker from 'worker!./worker.js';
+
+var binPackerWorker = new BinPackerWorker();
+
+binPackerWorker.addEventListener('error', err => console.log(err));
 
 class App extends Component {
 
@@ -25,16 +29,12 @@ class App extends Component {
       margin: 5,
       areas: [],
     };
-    myWorker.onmessage = (e) => {
-      this.setState({ areas: e.data });
-    }
-  }
 
-
-  componentWillUpdate(nextProps, nextState) {
-    if (this.state !== nextState) {
-      myWorker.postMessage(nextState);
-    }
+    binPackerWorker.addEventListener('message', e => {
+      this.setState({
+        areas: e.data
+      });
+    });
   }
 
 
@@ -46,7 +46,10 @@ class App extends Component {
           <h1>Material Calculator</h1>
           <p>Calculate the number of pieces of material you will need.</p>
           <CutOptionsForm
-            onChange={this.setState.bind(this)}
+            onChange={(data) => {
+              binPackerWorker.postMessage(data);
+              this.setState(data);
+            }}
             formData={this.state}
           />
         </div>
