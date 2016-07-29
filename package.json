@@ -1,6 +1,5 @@
 {
   "name": "materialcalculator",
-  "private": true,
   "devDependencies": {
     "autoprefixer": "6.3.7",
     "babel-core": "6.11.4",
@@ -53,7 +52,7 @@
     "react-dom": "^15.2.1"
   },
   "scripts": {
-    "semantic-release": "semantic-release pre && semantic-release post",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "start": "node ./scripts/start.js",
     "build": "node ./scripts/build.js"
   },
@@ -61,7 +60,7 @@
     "type": "git",
     "url": "https://github.com/BBB/materialcalculator.com.git"
   },
-  "version": "1.0.1"
+  "version": "1.0.1",
   "eslintConfig": {
     "extends": "./config/eslint.js"
   }
