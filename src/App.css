@@ -13,6 +13,9 @@
   padding: 15px 25px;
 }
 
+.cut button:hover {
+  background: #dbdee0;
+}
 .cut button {
   background: #eceff1;
   color: #8096a2;
@@ -76,4 +79,14 @@ button {
   color: #FFF;
   text-transform: uppercase;
   padding: 0.5em 1em;
+  cursor: pointer;
+}
+
+
+[role="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+button:hover {
+  background-color: #007ce3;
 }
