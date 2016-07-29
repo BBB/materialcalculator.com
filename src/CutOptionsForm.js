@@ -70,7 +70,7 @@ const CutOptionsForm = ({ onChange, formData }) => (
               }}
             />
             <FormInput
-              label="Amount"
+              label="Quantity"
               inputProps={{
                 type: 'number',
                 value: cut.h,
