@@ -1,0 +1,26 @@
+{
+  "name": "materialcalculator",
+  "private": true,
+  "devDependencies": {
+    "babel-plugin-transform-regenerator": "^6.11.4",
+    "babel-plugin-transform-runtime": "^6.9.0",
+    "babel-polyfill": "^6.9.1",
+    "react-scripts": "0.1.0",
+    "semantic-release": "^4.3.5"
+  },
+  "dependencies": {
+    "pushstate-server": "^1.8.1",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "semantic-release": "semantic-release pre && semantic-release post"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BBB/materialcalculator.com.git"
+  }
+}

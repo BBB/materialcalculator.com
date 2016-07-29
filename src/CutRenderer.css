@@ -1,0 +1,20 @@
+.CutRenderer {
+  padding: 10px 0 0;
+}
+
+svg {
+  width: 100%;
+  max-height: calc(50vh - 30px);
+}
+
+.area {
+  fill: rgba(255,255,255,0.1);
+  stroke: #fff;
+  stroke-width: 3px;
+}
+
+.cut.border {
+  fill: transparent;
+  stroke: #fff;
+  stroke-width: 1px;
+}

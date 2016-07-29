@@ -1,0 +1,54 @@
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#c5bbb1+6,bbb59b+99 */
+  background: #c5bbb1; /* Old browsers */
+  background: -moz-linear-gradient(-45deg,  #c5bbb1 6%, #bbb59b 99%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg,  #c5bbb1 6%,#bbb59b 99%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg,  #c5bbb1 6%,#bbb59b 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5bbb1', endColorstr='#bbb59b',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  /* End */
+  color: #20161f;
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+h1, h2 {
+  font-family: 'Slabo 27px', serif;
+}
+
+
+
+html {
+  background-image: linear-gradient(to bottom, #58c 0%, darken(#58c, 15%) 100%);
+}
+
+body {
+  background: #007ce3;
+  padding: 20px;
+  background-image:
+    linear-gradient(0deg,
+      transparent 0%, transparent 9px,
+      rgba(255,255,255,.2) 9px, rgba(255,255,255,.2) 10px, transparent 10px, transparent 19px,
+      rgba(255,255,255,.1) 19px, rgba(255,255,255,.1) 20px, transparent 20px, transparent 29px,
+      rgba(255,255,255,.1) 29px, rgba(255,255,255,.1) 30px, transparent 30px, transparent 39px,
+      rgba(255,255,255,.1) 39px, rgba(255,255,255,.1) 40px, transparent 40px, transparent 49px,
+      rgba(255,255,255,.1) 49px, rgba(255,255,255,.1) 50px),
+    linear-gradient(-90deg,
+      transparent 0%, transparent 9px,
+      rgba(255,255,255,.2) 9px, rgba(255,255,255,.2) 10px, transparent 10px, transparent 19px,
+      rgba(255,255,255,.1) 19px, rgba(255,255,255,.1) 20px, transparent 20px, transparent 29px,
+      rgba(255,255,255,.1) 29px, rgba(255,255,255,.1) 30px, transparent 30px, transparent 39px,
+      rgba(255,255,255,.1) 39px, rgba(255,255,255,.1) 40px, transparent 40px, transparent 49px,
+      rgba(255,255,255,.1) 49px, rgba(255,255,255,.1) 50px);
+  background-size: 50px 50px;
+}
