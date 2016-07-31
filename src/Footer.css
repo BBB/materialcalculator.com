@@ -1,8 +1,10 @@
 .Footer {
   border-top: 2px solid #FFF;
-  margin-top: 2em;
-  padding-top: 1em;
+  height: 3.8em;
+  margin-top: 1em;
+  padding: 1em;
   font-size: 0.8em;
+  background: #007ce4;
 }
 .Footer ul {
   list-style: none;

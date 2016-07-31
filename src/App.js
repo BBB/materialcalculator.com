@@ -44,19 +44,25 @@ class App extends Component {
     const { areas } = this.state;
     return (
       <div className="App">
-        <div className="Content">
+        <div className="Header">
           <h1>Material Calculator</h1>
-          <p>Calculate the number of pieces of material you will need.</p>
-          <CutOptionsForm
-            onChange={(data) => {
-              binPackerWorker.postMessage(data);
-              this.setState(data);
-            }}
-            formData={this.state}
-          />
         </div>
-        <CutRenderer areas={areas} />
-        <Footer />
+        <div className="Main">
+          <div className="Sidebar">
+            <p>Calculate the number of pieces of material you will need.</p>
+            <CutOptionsForm
+              onChange={(data) => {
+                binPackerWorker.postMessage(data);
+                this.setState(data);
+              }}
+              formData={this.state}
+            />
+          </div>
+          <div className="Content">
+            <CutRenderer areas={areas} />
+            <Footer />
+          </div>
+        </div>
       </div>
     );
   }

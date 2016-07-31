@@ -1,10 +1,22 @@
-.App {
+
+html, body, #root, .App { height: 100%; padding: 0; margin: 0; }
+.Header { height: 80px; }
+.Main { display: flex; height: calc(100% - 80px); }
+.Sidebar { overflow-y: auto; height: 100%; min-width: 100px; }
+.Content { height: 100%; width: 100%; }
+.CutRenderer { overflow-y: auto; height: calc(100% - 3.8em); }
+.Footer { overflow-y: auto; height: 30px; }
+
+.Header {
+  background: #a1abb2;
+  margin: 0;
+  padding: 0.1em 1em;
 }
 
-.Content {
+.Sidebar {
   background: #fff;
   margin: 0;
-  padding: 1px 50px 25px;
+  padding: 1px 20px 25px;
   border-radius: 2px;
 }
 
