@@ -4,16 +4,11 @@ import './CutRenderer.css';
 
 const CutRenderer = (props) => {
   const { areas } = props;
-  const X_SPACE = 20;
   return (
-    <div
-      className="CutRenderer"
-    >
+    <div className="CutRenderer">
       <div className="inner">
-        {areas.length > 0 && (
-          <svg
-            viewBox={`0 0 ${(areas.length * areas[0].w) + (areas.length * X_SPACE)} ${areas[0].h}`}
-          >
+        {areas.map((area, ix) => (
+          <svg key={ix} viewBox={`0 0 ${areas[0].w} ${areas[0].h}`}>
             <defs>
               <filter id="filter" height="2" width="2">
                 <feTurbulence baseFrequency="0.4" numOctaves="8" type="fractalNoise" />
@@ -30,58 +25,49 @@ const CutRenderer = (props) => {
                 <rect width="1" height="1" fill="url(#radialGradient)"/>
               </mask>
             </defs>
-            {areas.map((area, ix) => {
-              const xOffset = (area.w * ix) + (ix * X_SPACE);
+            <rect
+              className="area"
+              x="0"
+              y="0"
+              width={area.w}
+              height={area.h}
+              style={{ filter:'url(#filter)'}}
+            >
+            </rect>
+            {area.blocks.map((block, ix2) => {
               return (
                 <g
-                  key={ix}
+                  key={ix2}
                 >
                   <rect
-                    className="area"
-                    x={xOffset}
-                    y="0"
-                    width={area.w}
-                    height={area.h}
-                    style={{ filter:'url(#filter)'}}
+                    className="cut border"
+                    y={block.fit.y}
+                    x={block.fit.x}
+                    width={block.w}
+                    height={block.h}
+                    style={{
+                      filter: 'url(#filter)',
+                    }}
                   >
                   </rect>
-                  {area.blocks.map((block, ix2) => {
-                    return (
-                      <g
-                        key={ix2}
-                      >
-                        <rect
-                          className="cut border"
-                          y={block.fit.y}
-                          x={xOffset + block.fit.x}
-                          width={block.w}
-                          height={block.h}
-                          style={{
-                            filter: 'url(#filter)',
-                          }}
-                        >
-                        </rect>
-                        <rect
-                          className="cut filler"
-                          y={block.fit.y}
-                          x={xOffset + block.fit.x}
-                          width={block.w}
-                          height={block.h}
-                          transform={`rotate(${(ix/10)*30} ${xOffset + block.fit.x + (block.w/2)} ${block.fit.y + (block.h/2)})`}
-                          style={{
-                            fill: "url(#diagonalHatch)",
-                            mask: 'url(#fade)',
-                          }}
-                        >
-                        </rect>
-                      </g>
-                    );
-                  })}
+                  <rect
+                    className="cut filler"
+                    y={block.fit.y}
+                    x={block.fit.x}
+                    width={block.w}
+                    height={block.h}
+                    transform={`rotate(${(ix/10)*30} ${block.fit.x + (block.w/2)} ${block.fit.y + (block.h/2)})`}
+                    style={{
+                      fill: "url(#diagonalHatch)",
+                      mask: 'url(#fade)',
+                    }}
+                  >
+                  </rect>
                 </g>
               );
             })}
           </svg>
-        )}
+        ))}
       </div>
     </div>
   );
