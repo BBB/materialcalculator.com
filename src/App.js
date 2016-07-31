@@ -3,6 +3,7 @@ import './App.css';
 
 import CutRenderer from './CutRenderer';
 import CutOptionsForm from './CutOptionsForm';
+import Footer from './Footer';
 
 import BinPackerWorker from 'worker!./worker.js';
 
@@ -55,6 +56,7 @@ class App extends Component {
           />
         </div>
         <CutRenderer areas={areas} />
+        <Footer />
       </div>
     );
   }

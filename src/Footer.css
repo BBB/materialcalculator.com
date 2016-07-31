@@ -1,0 +1,18 @@
+.Footer {
+  border-top: 2px solid #FFF;
+  margin-top: 2em;
+  padding-top: 1em;
+  font-size: 0.8em;
+}
+.Footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.Footer ul li {
+  display: inline-block;
+  margin-right: 10px;
+}
+.Footer ul a {
+  color: #FFF;
+}
