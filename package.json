@@ -57,7 +57,7 @@
     "getLastRelease": "last-release-git-tag"
   },
   "scripts": {
-    "semantic-release": "semantic-release pre && semantic-release post",
+    "semantic-release": "semantic-release pre && semantic-release post && git add package.json && git commit -m 'chore(meta): Version update'",
     "start": "node ./scripts/start.js",
     "build": "node ./scripts/build.js"
   },
