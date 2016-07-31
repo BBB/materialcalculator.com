@@ -51,8 +51,9 @@
     "react": "^15.2.1",
     "react-dom": "^15.2.1"
   },
+  "private": true,
   "scripts": {
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "semantic-release": "semantic-release pre && npm run deploy && semantic-release post",
     "start": "node ./scripts/start.js",
     "build": "node ./scripts/build.js"
   },
@@ -60,7 +61,7 @@
     "type": "git",
     "url": "https://github.com/BBB/materialcalculator.com.git"
   },
-  "version": "1.1.1",
+  "version": "1.2.0",
   "eslintConfig": {
     "extends": "./config/eslint.js"
   }
