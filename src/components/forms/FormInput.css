@@ -5,8 +5,8 @@ div.FormInput {
 }
 
 div.FormInput input {
-  background: #e5ebdf;
-  color: #b5bbaf;
+  background: #e8f0fa;
+  color: #404c64;
   border: 0;
   padding: 0.5em 1em;
   border-radius: 3px;
@@ -14,5 +14,6 @@ div.FormInput input {
 
 div.FormInput label {
   display: inline-block;
+  text-tranform: uppercase;
   flex: 1 0 2em;
 }
