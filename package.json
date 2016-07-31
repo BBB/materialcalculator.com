@@ -33,6 +33,7 @@
     "gzip-size": "3.0.0",
     "html-webpack-plugin": "2.22.0",
     "json-loader": "0.5.4",
+    "last-release-git-tag": "^1.0.1",
     "normalize.css": "^4.2.0",
     "opn": "4.0.2",
     "postcss-loader": "0.9.1",
@@ -52,8 +53,11 @@
     "react-dom": "^15.2.1"
   },
   "private": true,
+  "release": {
+    "getLastRelease": "last-release-git-tag"
+  },
   "scripts": {
-    "semantic-release": "semantic-release pre && npm run deploy && semantic-release post",
+    "semantic-release": "semantic-release pre && semantic-release post",
     "start": "node ./scripts/start.js",
     "build": "node ./scripts/build.js"
   },
