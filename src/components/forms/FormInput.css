@@ -1,6 +1,7 @@
 div.FormInput {
   margin-bottom: 0.5em;
   padding-left: 0.5em;
+  display: flex;
 }
 
 div.FormInput input {
@@ -13,5 +14,5 @@ div.FormInput input {
 
 div.FormInput label {
   display: inline-block;
-  min-width: 100px;
+  flex: 1 0 2em;
 }
