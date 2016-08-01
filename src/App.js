@@ -52,8 +52,11 @@ class App extends Component {
             <p>Calculate the number of pieces of material you will need.</p>
             <CutOptionsForm
               onChange={(data) => {
-                binPackerWorker.postMessage(data);
                 this.setState(data);
+                binPackerWorker.postMessage({
+                  ...this.state,
+                  ...data
+                });
               }}
               formData={this.state}
             />
