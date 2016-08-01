@@ -25,7 +25,7 @@ html, body, #root, .App { height: 100%; padding: 0; margin: 0; }
 .cut {
   padding: 1em 0;
   margin-bottom: 1em;
-  border-bottom: 1px solid #eee;
+  border-bottom: 2px solid #3e4960;
 }
 
 .cut button:hover {
@@ -34,6 +34,16 @@ html, body, #root, .App { height: 100%; padding: 0; margin: 0; }
 .cut button {
   background: #eceff1;
   color: #8096a2;
+}
+
+.cut .FormInput label {
+  flex: 1 1 1em;
+}
+.cut .FormInput label:not(:first-child) {
+  margin-left: 0.5em;
+}
+.cut .FormInput input {
+  width: 5em;
 }
 
 form > h3 {

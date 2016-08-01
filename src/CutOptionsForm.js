@@ -53,30 +53,32 @@ const CutOptionsForm = ({ onChange, formData }) => (
         }
         return (
           <div key={ix} className="cut">
-            <FormInput
-              label="Width"
-              inputProps={{
-                type: 'number',
-                value: cut.w,
-                onChange: (e) => updateValue('w', e.target.value),
-              }}
-            />
-            <FormInput
-              label="Height"
-              inputProps={{
-                type: 'number',
-                value: cut.h,
-                onChange: (e) => updateValue('h', e.target.value),
-              }}
-            />
-            <FormInput
-              label="Quantity"
-              inputProps={{
-                type: 'number',
-                value: cut.count,
-                onChange: (e) => updateValue('count', e.target.value),
-              }}
-            />
+            <div className="FormInput">
+              <label>W</label>
+              <input
+                {...{
+                  type: 'number',
+                  value: cut.w,
+                  onChange: (e) => updateValue('w', e.target.value),
+                }}
+              />
+              <label>H</label>
+              <input
+                {...{
+                  type: 'number',
+                  value: cut.h,
+                  onChange: (e) => updateValue('h', e.target.value),
+                }}
+              />
+              <label>x</label>
+              <input
+                {...{
+                  type: 'number',
+                  value: cut.count,
+                  onChange: (e) => updateValue('count', e.target.value),
+                }}
+              />
+            </div>
             {formData.cuts.length > 1 && (
               <button
                 onClick={(e) => {
