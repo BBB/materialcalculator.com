@@ -9,7 +9,7 @@ import BinPackerWorker from 'worker!./worker.js';
 
 var binPackerWorker = new BinPackerWorker();
 
-binPackerWorker.addEventListener('error', err => console.log(err));
+binPackerWorker.addEventListener('error', err => console.error(err));
 
 class App extends Component {
 
