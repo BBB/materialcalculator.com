@@ -16,4 +16,5 @@ div.FormInput label {
   display: inline-block;
   text-tranform: uppercase;
   flex: 1 0 2em;
+  line-height: 2;
 }
