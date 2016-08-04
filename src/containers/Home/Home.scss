@@ -1,0 +1,13 @@
+.MainBody {
+  display: flex; height: calc(100% - 80px);
+}
+.Sidebar { overflow-y: auto; height: 100%; min-width: 100px; }
+.Content { height: 100%; width: 100%; }
+
+.Sidebar {
+  background: #333c4e;
+  margin: 0;
+  padding: 1px 20px 25px;
+  color: #9cabc4;
+}
+

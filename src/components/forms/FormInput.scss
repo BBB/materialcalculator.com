@@ -1,0 +1,18 @@
+.FormInput {
+  margin-bottom: 0.5em;
+  padding-left: 0.5em;
+  display: flex;
+  input {
+    background: #e8f0fa;
+    color: #404c64;
+    border: 0;
+    padding: 0.5em 1em;
+    border-radius: 3px;
+  }
+  label {
+    display: inline-block;
+    text-tranform: uppercase;
+    flex: 1 0 2em;
+    line-height: 2;
+  }
+}

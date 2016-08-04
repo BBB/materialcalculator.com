@@ -13,8 +13,9 @@ export default class Packer {
   }
 
   fit(blocks) {
-    var n, node, block;
-    for (n = 0; n < blocks.length; n++) {
+    let node;
+    let block;
+    for (let n = 0; n < blocks.length; n++) {
       block = blocks[n];
       node = this.findNode(this.root, block.w, block.h);
       if (node) {

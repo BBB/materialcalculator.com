@@ -1,0 +1,32 @@
+.CutOptionsForm {
+  > h3 {
+    color: #FFF;
+  }
+
+  > div {
+    border-bottom: 1px solid #3b465b;
+    padding-bottom: 1em;
+  }
+
+  .cut {
+    padding: 1em 0;
+    margin-bottom: 1em;
+    border-bottom: 2px solid #3e4960;
+    button {
+      background: #eceff1;
+      color: #8096a2;
+    }
+    button:hover {
+      background: #dbdee0;
+    }
+    label {
+      flex: 1 1 1em;
+    }
+    label:not(:first-child) {
+      margin-left: 0.5em;
+    }
+    input {
+      width: 5em;
+    }
+  }
+}

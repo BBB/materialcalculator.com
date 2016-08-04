@@ -1,14 +1,15 @@
 import React from 'react';
 
-import './FormInput.css';
-
-const FormInput = ({ label, inputProps }) => (
-  <div className="FormInput">
-    {label && <label htmlFor={inputProps.name}>{label + ': '}</label>}
-    <input
-      {...inputProps}
-    />
-  </div>
-);
+const FormInput = ({ label, inputProps }) => {
+  const styles = require('./FormInput.scss');
+  return (
+    <div className={styles.FormInput}>
+      {label && <label htmlFor={inputProps.name}>{label + ': '}</label>}
+      <input
+        {...inputProps}
+      />
+    </div>
+  );
+};
 
 export default FormInput;
