@@ -1,8 +1,26 @@
 {
+  "stage": 0,
+  "optional": "runtime",
+  "loose": "all",
   "plugins": [
-    ["transform-runtime", {
-      "polyfill": false,
-      "regenerator": true
-    }]
-  ]
+    "typecheck"
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "react-transform"
+      ],
+      "extra": {
+        "react-transform": {
+          "transforms": [{
+            "transform": "react-transform-catch-errors",
+            "imports": [
+              "react",
+              "redbox-react"
+            ]
+          }]
+        }
+      }
+    }
+  }
 }
