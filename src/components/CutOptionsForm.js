@@ -13,11 +13,14 @@ const CutOptionsForm = ({ onChange, formData }) => {
           label="Width"
           inputProps={{
             type: 'number',
-            value: formData.materialSize.w,
+            value: formData.materialSize.w.amount,
             onChange: (e) => {
               const newMaterialSize = {
                 ...formData.materialSize,
-                w: Number(e.target.value),
+                w: {
+                  ...formData.materialSize.w,
+                  amount: Number(e.target.value),
+                }
               };
               onChange({ materialSize: newMaterialSize, });
             }
@@ -27,11 +30,14 @@ const CutOptionsForm = ({ onChange, formData }) => {
           label="Height"
           inputProps={{
             type: 'number',
-            value: formData.materialSize.h,
+            value: formData.materialSize.h.amount,
             onChange: (e) => {
               const newMaterialSize = {
                 ...formData.materialSize,
-                h: Number(e.target.value),
+                h: {
+                  ...formData.materialSize.h,
+                  amount: Number(e.target.value),
+                }
               };
               onChange({ materialSize: newMaterialSize, });
             }
@@ -43,15 +49,23 @@ const CutOptionsForm = ({ onChange, formData }) => {
         label="Size"
         inputProps={{
           type: 'number',
-          value: formData.margin,
-          onChange: (e) => onChange({ margin: Number(e.target.value), })
+          value: formData.margin.amount,
+          onChange: (e) => onChange({
+            margin: {
+              ...formData.margin,
+              amount: Number(e.target.value),
+            }
+          })
         }}
       />
       <h3>Cut List</h3>
       {
         formData.cuts.map((cut, ix) => {
           const updateValue = (prop, value) => {
-            cut[prop] = Number(value);
+            cut[prop] = {
+              ...cut[prop],
+              amount: Number(value),
+            };
             onChange(formData);
           };
           return (
@@ -61,7 +75,7 @@ const CutOptionsForm = ({ onChange, formData }) => {
                 <input
                   {...{
                     type: 'number',
-                    value: cut.w,
+                    value: cut.w.amount,
                     onChange: (e) => updateValue('w', e.target.value),
                   }}
                 />
@@ -69,7 +83,7 @@ const CutOptionsForm = ({ onChange, formData }) => {
                 <input
                   {...{
                     type: 'number',
-                    value: cut.h,
+                    value: cut.h.amount,
                     onChange: (e) => updateValue('h', e.target.value),
                   }}
                 />
@@ -78,7 +92,10 @@ const CutOptionsForm = ({ onChange, formData }) => {
                   {...{
                     type: 'number',
                     value: cut.count,
-                    onChange: (e) => updateValue('count', e.target.value),
+                    onChange: (e) => {
+                      cut.count = Number(e.target.value);
+                      onChange(formData);
+                    },
                   }}
                 />
               </div>
@@ -99,8 +116,14 @@ const CutOptionsForm = ({ onChange, formData }) => {
         onClick={(e) => {
           e.preventDefault();
           formData.cuts.push({
-            w: 10,
-            h: 10,
+            w: {
+              amount: 10,
+              unit: 'Millimeters',
+            },
+            h: {
+              amount: 10,
+              unit: 'Millimeters',
+            },
             count: 1,
           });
           onChange(formData);
