@@ -1,6 +1,7 @@
 import React from 'react';
 
 import FormInput from 'components/forms/FormInput';
+import LengthInput from 'components/LengthInput';
 
 const CutOptionsForm = ({ onChange, formData }) => {
   const formInputStyles = require('components/forms/FormInput.scss');
@@ -9,84 +10,59 @@ const CutOptionsForm = ({ onChange, formData }) => {
     <form className={styles.CutOptionsForm}>
       <h3>Material Size</h3>
       <div>
-        <FormInput
-          label="Width"
-          inputProps={{
-            type: 'number',
-            value: formData.materialSize.w.amount,
-            onChange: (e) => {
-              const newMaterialSize = {
+        <FormInput label="Width">
+          <LengthInput
+            value={formData.materialSize.w}
+            onChange={(w) => onChange({
+              materialSize: {
                 ...formData.materialSize,
-                w: {
-                  ...formData.materialSize.w,
-                  amount: Number(e.target.value),
-                }
-              };
-              onChange({ materialSize: newMaterialSize, });
-            }
-          }}
-        />
-        <FormInput
-          label="Height"
-          inputProps={{
-            type: 'number',
-            value: formData.materialSize.h.amount,
-            onChange: (e) => {
-              const newMaterialSize = {
+                w,
+              },
+            })}
+          />
+        </FormInput>
+        <FormInput label="Height">
+          <LengthInput
+            value={formData.materialSize.h}
+            onChange={(h) => onChange({
+              materialSize: {
                 ...formData.materialSize,
-                h: {
-                  ...formData.materialSize.h,
-                  amount: Number(e.target.value),
-                }
-              };
-              onChange({ materialSize: newMaterialSize, });
-            }
-          }}
-        />
+                h,
+              },
+            })}
+          />
+        </FormInput>
       </div>
       <h3>Cut Margin</h3>
-      <FormInput
-        label="Size"
-        inputProps={{
-          type: 'number',
-          value: formData.margin.amount,
-          onChange: (e) => onChange({
-            margin: {
-              ...formData.margin,
-              amount: Number(e.target.value),
-            }
-          })
-        }}
-      />
+      <FormInput label="Size">
+        <LengthInput
+          value={formData.margin}
+          onChange={(margin) => onChange({
+            margin,
+          })}
+        />
+      </FormInput>
       <h3>Cut List</h3>
       {
         formData.cuts.map((cut, ix) => {
           const updateValue = (prop, value) => {
-            cut[prop] = {
-              ...cut[prop],
-              amount: Number(value),
-            };
+            cut[prop] = value;
             onChange(formData);
           };
           return (
             <div key={ix} className={styles.cut}>
               <div className={formInputStyles.FormInput}>
                 <label>W</label>
-                <input
-                  {...{
-                    type: 'number',
-                    value: cut.w.amount,
-                    onChange: (e) => updateValue('w', e.target.value),
-                  }}
+                <LengthInput
+                  onChange={(value) => updateValue('w', value)}
+                  value={cut.w}
                 />
                 <label>H</label>
-                <input
-                  {...{
-                    type: 'number',
-                    value: cut.h.amount,
-                    onChange: (e) => updateValue('h', e.target.value),
-                  }}
+                <LengthInput
+                  onChange={(value) => updateValue('h', value)}
+                  value={cut.h}
                 />
+
                 <label>x</label>
                 <input
                   {...{
