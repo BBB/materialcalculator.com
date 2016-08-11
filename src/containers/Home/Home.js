@@ -24,11 +24,11 @@ class App extends Component {
       cuts: [
         {
           w: {
-            amount: 100,
-            unit: 'Millimeter'
+            amount: 0.5,
+            unit: 'Meter'
           },
           h: {
-            amount: 100,
+            amount: 500,
             unit: 'Millimeter'
           },
           count: 10,
@@ -36,17 +36,17 @@ class App extends Component {
       ],
       materialSize: {
         w: {
-          amount: 800,
-          unit: 'Millimeter'
+          amount: 8,
+          unit: 'Foot'
         },
         h: {
-          amount: 400,
-          unit: 'Millimeter'
+          amount: 4,
+          unit: 'Foot'
         },
       },
       margin: {
-        amount: 5,
-        unit: 'Millimeter'
+        amount: 2,
+        unit: 'Inch'
       },
       areas: [],
     };
