@@ -1,3 +1,5 @@
+import { memoize } from 'lodash';
+
 const multiply = (a, b) => ((a * 10000) * (b * 10000)) / 10000;
 const divide = (a, b) => ((a * 10000) / (b * 10000)) / 10000;
 
@@ -64,7 +66,7 @@ const convertToBaseUnits = (startValue, startUnit) => {
   };
 };
 
-const convertTo = (startUnit, endUnit, startValue) => {
+const convertTo = memoize((startUnit, endUnit, startValue) => {
   const baseUnits = convertToBaseUnits(startValue, startUnit);
   if (startUnit.type === endUnit.type) {
     if (endUnit.key === startUnit.units) {
@@ -75,16 +77,16 @@ const convertTo = (startUnit, endUnit, startValue) => {
       amount: divide(baseUnits.amount, endUnit.value),
     };
   }
-};
+}, (startUnit, endUnit, startValue) => `${startUnit.name}${endUnit.name}${startValue}`);
 
-const convertAmount = (amount, endUnit) => {
+const convertAmount = memoize((amount, endUnit) => {
   const endUnitDef = getUnitDef(endUnit);
   let conv = amount;
   if (amount.unit !== endUnit) {
     conv = convertTo(getUnitDef(amount.unit), endUnitDef, amount.amount);
   }
   return conv;
-};
+}, (amount, endUnit) => `${amount.amount}${amount.unit}${endUnit}`);
 
 const fractionToDecimal = (value) => {
   if (!/\//.test(value)) {
