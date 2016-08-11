@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
+import { convertAmount } from 'lib/measurements';
+
 import UnitDropdown from 'components/UnitDropdown';
 
 export default class LengthInput extends Component {
@@ -24,10 +26,7 @@ export default class LengthInput extends Component {
           })}
         />
         <UnitDropdown
-          onChange={(val) => onChange({
-            ...value,
-            unit: val,
-          })}
+          onChange={(val) => onChange(convertAmount(value, val))}
           value={unit}
         />
       </div>
