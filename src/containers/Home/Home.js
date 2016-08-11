@@ -50,7 +50,7 @@ class App extends Component {
       },
       areas: [],
     };
-    binPackerWorker.postMessage(this.state);
+    this.postData(this.state);
 
     binPackerWorker.addEventListener('message', e => {
       this.setState({
@@ -59,6 +59,9 @@ class App extends Component {
     });
   }
 
+  postData(data) {
+    binPackerWorker.postMessage(data);
+  }
 
   render() {
     const { areas } = this.state;
@@ -71,7 +74,7 @@ class App extends Component {
           <CutOptionsForm
             onChange={(data) => {
               this.setState(data);
-              binPackerWorker.postMessage({
+              this.postData({
                 ...this.state,
                 ...data
               });
