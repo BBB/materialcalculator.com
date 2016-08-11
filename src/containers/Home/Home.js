@@ -23,16 +23,31 @@ class App extends Component {
     this.state = {
       cuts: [
         {
-          w: 100,
-          h: 100,
+          w: {
+            amount: 100,
+            unit: 'Millimeters'
+          },
+          h: {
+            amount: 100,
+            unit: 'Millimeters'
+          },
           count: 10,
         },
       ],
       materialSize: {
-        w: 800,
-        h: 400,
+        w: {
+          amount: 800,
+          unit: 'Millimeters'
+        },
+        h: {
+          amount: 400,
+          unit: 'Millimeters'
+        },
       },
-      margin: 5,
+      margin: {
+        amount: 5,
+        unit: 'Millimeters'
+      },
       areas: [],
     };
     binPackerWorker.postMessage(this.state);
