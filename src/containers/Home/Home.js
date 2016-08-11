@@ -25,11 +25,11 @@ class App extends Component {
         {
           w: {
             amount: 100,
-            unit: 'Millimeters'
+            unit: 'Millimeter'
           },
           h: {
             amount: 100,
-            unit: 'Millimeters'
+            unit: 'Millimeter'
           },
           count: 10,
         },
@@ -37,16 +37,16 @@ class App extends Component {
       materialSize: {
         w: {
           amount: 800,
-          unit: 'Millimeters'
+          unit: 'Millimeter'
         },
         h: {
           amount: 400,
-          unit: 'Millimeters'
+          unit: 'Millimeter'
         },
       },
       margin: {
         amount: 5,
-        unit: 'Millimeters'
+        unit: 'Millimeter'
       },
       areas: [],
     };

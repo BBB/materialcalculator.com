@@ -118,11 +118,11 @@ const CutOptionsForm = ({ onChange, formData }) => {
           formData.cuts.push({
             w: {
               amount: 10,
-              unit: 'Millimeters',
+              unit: 'Millimeter',
             },
             h: {
               amount: 10,
-              unit: 'Millimeters',
+              unit: 'Millimeter',
             },
             count: 1,
           });
