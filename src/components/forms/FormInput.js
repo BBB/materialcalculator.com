@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { Children } from 'react';
 
-const FormInput = ({ label, inputProps }) => {
+const FormInput = ({ label, inputProps, children }) => {
   const styles = require('./FormInput.scss');
   return (
     <div className={styles.FormInput}>
-      {label && <label htmlFor={inputProps.name}>{label + ': '}</label>}
-      <input
-        {...inputProps}
-      />
+      {label && <label htmlFor={inputProps && inputProps.name}>{label + ': '}</label>}
+      {children && Children.only(children)}
+      {!children && <input {...inputProps} />}
     </div>
   );
 };
