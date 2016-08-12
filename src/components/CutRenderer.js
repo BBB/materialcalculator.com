@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react';
+import ReactDOM from 'react-dom';
 
 export default class CutRenderer extends Component {
 
@@ -9,11 +10,23 @@ export default class CutRenderer extends Component {
   render() {
     const { areas, } = this.props;
     const styles = require('./CutRenderer.scss');
+    const wrapperNode = ReactDOM.findDOMNode(this.refs.wrapper);
+    const maxSize = {
+      w: wrapperNode ? wrapperNode.clientWidth : 0,
+      h: global.window ? global.window.innerHeight : 0,
+    };
+    let SCALE_FACTOR = 1;
+    if (Math.max(areas[0].w, areas[0].h) === areas[0].w) {
+      SCALE_FACTOR = maxSize.w / areas[0].w;
+    }
+    if (Math.max(areas[0].w, areas[0].h) === areas[0].h) {
+      SCALE_FACTOR = maxSize.h / areas[0].h;
+    }
     return (
-      <div className={styles.CutRenderer}>
+      <div className={styles.CutRenderer} ref="wrapper">
         <div className="inner">
           {areas.map((area, ix) => (
-            <svg key={ix} viewBox={`0 0 ${areas[0].w} ${areas[0].h}`}>
+            <svg key={ix} viewBox={`0 0 ${areas[0].w * SCALE_FACTOR} ${areas[0].h * SCALE_FACTOR}`}>
               <defs>
                 <filter id="fuzzyStroke" height="2" width="2">
                   <feTurbulence baseFrequency="0.4" numOctaves="8" type="fractalNoise" />
@@ -34,8 +47,8 @@ export default class CutRenderer extends Component {
                 className={styles.Area}
                 x="0"
                 y="0"
-                width={area.w}
-                height={area.h}
+                width={area.w * SCALE_FACTOR}
+                height={area.h * SCALE_FACTOR}
                 style={{ filter: 'url(#fuzzyStroke)'}}
               >
               </rect>
@@ -46,10 +59,10 @@ export default class CutRenderer extends Component {
                   >
                     <rect
                       className={styles.CutBorder + ''}
-                      y={block.fit.y}
-                      x={block.fit.x}
-                      width={block.w}
-                      height={block.h}
+                      y={block.fit.y * SCALE_FACTOR}
+                      x={block.fit.x * SCALE_FACTOR}
+                      width={block.w * SCALE_FACTOR}
+                      height={block.h * SCALE_FACTOR}
                       style={{
                         filter: 'url(#fuzzyStroke)',
                       }}
@@ -57,10 +70,10 @@ export default class CutRenderer extends Component {
                     </rect>
                     <rect
                       className={styles.CutFiller + ''}
-                      y={block.fit.y}
-                      x={block.fit.x}
-                      width={block.w}
-                      height={block.h}
+                      y={block.fit.y * SCALE_FACTOR}
+                      x={block.fit.x * SCALE_FACTOR}
+                      width={block.w * SCALE_FACTOR}
+                      height={block.h * SCALE_FACTOR}
                       transform={`rotate(${(ix / 10) * 30} ${block.fit.x + (block.w / 2)} ${block.fit.y + (block.h / 2)})`}
                       style={{
                         fill: 'url(#diagonalHatch)',
