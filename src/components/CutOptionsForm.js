@@ -2,10 +2,13 @@ import React from 'react';
 
 import FormInput from 'components/forms/FormInput';
 import LengthInput from 'components/LengthInput';
+import Col from 'components/grid/Col';
+import Row from 'components/grid/Row';
 
 const CutOptionsForm = ({ onChange, formData }) => {
   const formInputStyles = require('components/forms/FormInput.scss');
   const styles = require('./CutOptionsForm.scss');
+  const autoWidth = { xs: 'auto' };
   return (
     <form className={styles.CutOptionsForm}>
       <h3>Material Size</h3>
@@ -51,39 +54,49 @@ const CutOptionsForm = ({ onChange, formData }) => {
           };
           return (
             <div key={ix} className={styles.cut}>
-              <div className={formInputStyles.FormInput}>
-                <label>W</label>
-                <LengthInput
-                  onChange={(value) => updateValue('w', value)}
-                  value={cut.w}
-                />
-                <label>H</label>
-                <LengthInput
-                  onChange={(value) => updateValue('h', value)}
-                  value={cut.h}
-                />
-
-                <label>x</label>
-                <input
-                  {...{
-                    type: 'number',
-                    value: cut.count,
-                    onChange: (e) => {
-                      cut.count = Number(e.target.value);
-                      onChange(formData);
-                    },
-                  }}
-                />
-              </div>
-              {formData.cuts.length > 1 && (
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    formData.cuts.splice(ix, 1);
-                    onChange(formData);
-                  }}
-                >Remove</button>
-              )}
+              <Row className={formInputStyles.FormInput}>
+                <Col widths={autoWidth}>
+                  <FormInput label="W">
+                    <LengthInput
+                      onChange={(value) => updateValue('w', value)}
+                      value={cut.w}
+                    />
+                  </FormInput>
+                </Col>
+                <Col widths={autoWidth}>
+                  <FormInput label="H">
+                    <LengthInput
+                      onChange={(value) => updateValue('h', value)}
+                      value={cut.h}
+                    />
+                  </FormInput>
+                </Col>
+                <Col widths={autoWidth}>
+                  <FormInput label="x"
+                    inputProps={
+                      {
+                        type: 'number',
+                        value: cut.count,
+                        onChange: (e) => {
+                          cut.count = Number(e.target.value);
+                          onChange(formData);
+                        },
+                      }
+                    }
+                  />
+                </Col>
+                {formData.cuts.length > 1 && (
+                  <Col widths={autoWidth}>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        formData.cuts.splice(ix, 1);
+                        onChange(formData);
+                      }}
+                    >Remove</button>
+                  </Col>
+                )}
+              </Row>
             </div>
           );
         })
