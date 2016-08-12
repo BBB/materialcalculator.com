@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
+import SplitPane from 'react-split-pane';
 
 import CutRenderer from 'components/CutRenderer';
 import CutOptionsForm from 'components/CutOptionsForm';
@@ -69,23 +70,29 @@ class App extends Component {
     return (
       <div className={styles.MainBody + ''}>
         <Helmet title="Home"/>
-        <div className={styles.Sidebar}>
-          <p>Calculate the number of pieces of material you will need.</p>
-          <CutOptionsForm
-            onChange={(data) => {
-              this.setState(data);
-              this.postData({
-                ...this.state,
-                ...data
-              });
-            }}
-            formData={this.state}
-          />
-        </div>
-        <div className={styles.Content + ''}>
-          <CutRenderer areas={areas} />
-          <Footer />
-        </div>
+        <SplitPane
+          split="vertical"
+          resizerStyle={styles.Resizer}
+          defaultSize={'40%'}
+        >
+          <div className={styles.Sidebar}>
+            <p>Calculate the number of pieces of material you will need.</p>
+            <CutOptionsForm
+              onChange={(data) => {
+                this.setState(data);
+                this.postData({
+                  ...this.state,
+                  ...data
+                });
+              }}
+              formData={this.state}
+            />
+          </div>
+          <div className={styles.Content + ''}>
+            <CutRenderer areas={areas} />
+            <Footer />
+          </div>
+        </SplitPane>
       </div>
     );
   }
