@@ -13,7 +13,6 @@ const Visualisation = (props) => {
   if (Math.max(areas[0].w, areas[0].h) === areas[0].h) {
     SCALE_FACTOR = maxSize.h / areas[0].h;
   }
-  console.log('SCALE_FACTOR', SCALE_FACTOR);
   if (SCALE_FACTOR === 0) {
     return null;
   }
