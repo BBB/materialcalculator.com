@@ -23,9 +23,10 @@ const dest = document.getElementById('content');
 const store = createStore(history, retrocycle(window.__data));
 
 const component = (
-  <Router render={(props) =>
-        <ReduxAsyncConnect {...props} helpers={{}} filter={item => !item.deferred} />
-      } history={history}>
+  <Router
+    render={(props) => <ReduxAsyncConnect {...props} helpers={{}} filter={item => !item.deferred} />}
+    history={history}
+  >
     {getRoutes(store)}
   </Router>
 );
