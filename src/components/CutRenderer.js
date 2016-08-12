@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
-import ReactDOM from 'react-dom';
+
+import Visualisation from 'components/Visualisation';
 
 export default class CutRenderer extends Component {
 
@@ -7,85 +8,70 @@ export default class CutRenderer extends Component {
     areas: PropTypes.array.isRequired,
   }
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      maxSize: {
+        w: 0,
+        h: 0,
+      }
+    };
+    this.updateDimensions.bind(this);
+  }
+
+  componentWillMount() {
+    this.updateDimensions();
+  }
+
+  componentDidMount() {
+    global.window.addEventListener('resize', this.updateDimensions.bind(this));
+  }
+
+  componentWillUnmount() {
+    global.window.removeEventListener('resize', this.updateDimensions.bind(this));
+  }
+
+  updateDimensions() {
+    const w = global.window;
+    const d = global.document;
+    const documentElement = d && d.documentElement;
+    const body = d && d.getElementsByTagName('body')[0];
+    const height = (w && w.innerHeight) || (documentElement && documentElement.clientHeight) || (body && body.clientHeight) || 0;
+    this.setState({
+      maxSize: {
+        ...this.state.maxSize,
+        h: height > 0 ? (height - 100) : 0, // approx for header & footer
+      },
+    });
+  }
+
   render() {
     const { areas, } = this.props;
+    const { maxSize, } = this.state;
     const styles = require('./CutRenderer.scss');
-    const wrapperNode = ReactDOM.findDOMNode(this.refs.wrapper);
-    const maxSize = {
-      w: wrapperNode ? wrapperNode.clientWidth : 0,
-      h: global.window ? global.window.innerHeight : 0,
-    };
-    let SCALE_FACTOR = 1;
-    if (Math.max(areas[0].w, areas[0].h) === areas[0].w) {
-      SCALE_FACTOR = maxSize.w / areas[0].w;
-    }
-    if (Math.max(areas[0].w, areas[0].h) === areas[0].h) {
-      SCALE_FACTOR = maxSize.h / areas[0].h;
-    }
     return (
-      <div className={styles.CutRenderer} ref="wrapper">
+      <div
+        className={styles.CutRenderer}
+        ref={(node) => {
+          if (!node) {
+            return;
+          }
+          if (node.clientWidth === maxSize.w) {
+            return;
+          }
+          this.setState({
+            maxSize: {
+              ...maxSize,
+              w: node.clientWidth,
+            }
+          });
+        }}
+      >
         <div className="inner">
-          {areas.map((area, ix) => (
-            <svg key={ix} viewBox={`0 0 ${areas[0].w * SCALE_FACTOR} ${areas[0].h * SCALE_FACTOR}`}>
-              <defs>
-                <filter id="fuzzyStroke" height="2" width="2">
-                  <feTurbulence baseFrequency="0.4" numOctaves="8" type="fractalNoise" />
-                  <feDisplacementMap scale="2" xChannelSelector="R" in="SourceGraphic" />
-                </filter>
-                <pattern id="diagonalHatch" width="10" height="10" patternTransform="rotate(42 0 0)" patternUnits="userSpaceOnUse">
-                  <line x1="0" y1="0" x2="0" y2="10" style={{ stroke: 'rgba(255,255,255, 0.2)', strokeWidth: 3 }} />
-                </pattern>
-                <radialGradient id="radialGradient" cx=".5" cy=".5" r=".5">
-                  <stop offset="0.5" stopColor="white" stopOpacity="1"/>
-                  <stop offset="1" stopColor="white" stopOpacity="0"/>
-                </radialGradient>
-                <mask id="fade" maskContentUnits="objectBoundingBox">
-                  <rect width="1" height="1" fill="url(#radialGradient)"/>
-                </mask>
-              </defs>
-              <rect
-                className={styles.Area}
-                x="0"
-                y="0"
-                width={area.w * SCALE_FACTOR}
-                height={area.h * SCALE_FACTOR}
-                style={{ filter: 'url(#fuzzyStroke)'}}
-              >
-              </rect>
-              {area.blocks.map((block, ix2) => {
-                return (
-                  <g
-                    key={ix2}
-                  >
-                    <rect
-                      className={styles.CutBorder + ''}
-                      y={block.fit.y * SCALE_FACTOR}
-                      x={block.fit.x * SCALE_FACTOR}
-                      width={block.w * SCALE_FACTOR}
-                      height={block.h * SCALE_FACTOR}
-                      style={{
-                        filter: 'url(#fuzzyStroke)',
-                      }}
-                    >
-                    </rect>
-                    <rect
-                      className={styles.CutFiller + ''}
-                      y={block.fit.y * SCALE_FACTOR}
-                      x={block.fit.x * SCALE_FACTOR}
-                      width={block.w * SCALE_FACTOR}
-                      height={block.h * SCALE_FACTOR}
-                      transform={`rotate(${(ix / 10) * 30} ${block.fit.x + (block.w / 2)} ${block.fit.y + (block.h / 2)})`}
-                      style={{
-                        fill: 'url(#diagonalHatch)',
-                        mask: 'url(#fade)',
-                      }}
-                    >
-                    </rect>
-                  </g>
-                );
-              })}
-            </svg>
-          ))}
+          <Visualisation
+            areas={areas}
+            maxSize={maxSize}
+          />
         </div>
       </div>
     );
