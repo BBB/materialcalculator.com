@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
+import SplitPane from 'react-split-pane';
 
 import CutRenderer from 'components/CutRenderer';
 import CutOptionsForm from 'components/CutOptionsForm';
@@ -23,19 +24,34 @@ class App extends Component {
     this.state = {
       cuts: [
         {
-          w: 100,
-          h: 100,
+          w: {
+            amount: 0.5,
+            unit: 'Meter'
+          },
+          h: {
+            amount: 500,
+            unit: 'Millimeter'
+          },
           count: 10,
         },
       ],
       materialSize: {
-        w: 800,
-        h: 400,
+        w: {
+          amount: 8,
+          unit: 'Foot'
+        },
+        h: {
+          amount: 4,
+          unit: 'Foot'
+        },
       },
-      margin: 5,
+      margin: {
+        amount: 2,
+        unit: 'Inch'
+      },
       areas: [],
     };
-    binPackerWorker.postMessage(this.state);
+    this.postData(this.state);
 
     binPackerWorker.addEventListener('message', e => {
       this.setState({
@@ -44,6 +60,9 @@ class App extends Component {
     });
   }
 
+  postData(data) {
+    binPackerWorker.postMessage(data);
+  }
 
   render() {
     const { areas } = this.state;
@@ -51,23 +70,29 @@ class App extends Component {
     return (
       <div className={styles.MainBody + ''}>
         <Helmet title="Home"/>
-        <div className={styles.Sidebar}>
-          <p>Calculate the number of pieces of material you will need.</p>
-          <CutOptionsForm
-            onChange={(data) => {
-              this.setState(data);
-              binPackerWorker.postMessage({
-                ...this.state,
-                ...data
-              });
-            }}
-            formData={this.state}
-          />
-        </div>
-        <div className={styles.Content + ''}>
-          <CutRenderer areas={areas} />
-          <Footer />
-        </div>
+        <SplitPane
+          split="vertical"
+          resizerStyle={styles.Resizer}
+          defaultSize={'40%'}
+        >
+          <div className={styles.Sidebar}>
+            <p>Calculate the number of pieces of material you will need.</p>
+            <CutOptionsForm
+              onChange={(data) => {
+                this.setState(data);
+                this.postData({
+                  ...this.state,
+                  ...data
+                });
+              }}
+              formData={this.state}
+            />
+          </div>
+          <div className={styles.Content + ''}>
+            <CutRenderer areas={areas} />
+            <Footer />
+          </div>
+        </SplitPane>
       </div>
     );
   }

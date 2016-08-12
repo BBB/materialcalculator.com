@@ -1,0 +1,17 @@
+.LengthInput {
+  display: flex;
+  position: relative;
+  button {
+    background-color: #e8f0fa !important;
+    border-radius: 0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: #8196a2 !important;
+    padding-left: 0;
+  }
+  input {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    padding-right: 0 !important;
+  }
+}

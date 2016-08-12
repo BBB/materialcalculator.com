@@ -47,6 +47,45 @@ export default class Html extends Component {
           {/* can smoothen the initial style flash (flicker) on page load in development mode. */}
           {/* ideally one could also include here the style for the current page (Home.scss, About.scss, etc) */}
           { Object.keys(assets.styles).length === 0 ? <style dangerouslySetInnerHTML={{__html: require('../containers/App/App.scss')._style}}/> : null }
+          <style>
+            {`
+            .Resizer {
+              background: #000;
+              opacity: .2;
+              z-index: 1;
+              -moz-box-sizing: border-box;
+              -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+              -moz-background-clip: padding;
+              -webkit-background-clip: padding;
+              background-clip: padding-box;
+            }
+
+            .Resizer:hover {
+              -webkit-transition: all 2s ease;
+              transition: all 2s ease;
+            }
+
+            .Resizer.vertical {
+                width: 11px;
+                margin: 0 -5px;
+                border-left: 5px solid rgba(255, 255, 255, 0);
+                border-right: 5px solid rgba(255, 255, 255, 0);
+                cursor: col-resize;
+            }
+
+            .Resizer.vertical:hover {
+                border-left: 5px solid rgba(0, 0, 0, 0.5);
+                border-right: 5px solid rgba(0, 0, 0, 0.5);
+            }
+            .Resizer.disabled {
+              cursor: not-allowed;
+            }
+            .Resizer.disabled:hover {
+              border-color: transparent;
+            }
+            `}
+          </style>
         </head>
         <body>
           <div id="content" style={{ height: '100%' }} dangerouslySetInnerHTML={{__html: content}}/>

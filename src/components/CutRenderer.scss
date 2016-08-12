@@ -1,23 +1,8 @@
-.CutRenderer { overflow-y: auto; height: calc(100% - 3.8em); }
+.CutRenderer {
+  overflow-y: auto; height: calc(100% - 3.8em);
+  width: 100%;
+}
 
 .CutRenderer {
   padding: 20px;
-  svg {
-    width: 100%;
-    margin-bottom: 2em;
-
-    .Area {
-      fill: rgba(255,255,255,0.1);
-      stroke: #fff;
-      stroke-width: 3px;
-    }
-  }
-
-}
-
-
-.CutBorder {
-  fill: transparent;
-  stroke: #fff;
-  stroke-width: 1px;
 }

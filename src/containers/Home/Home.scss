@@ -1,5 +1,6 @@
 .MainBody {
-  display: flex; height: calc(100% - 80px);
+  height: calc(100% - 80px);
+  position: relative;
 }
 .Sidebar { overflow-y: auto; height: 100%; min-width: 100px; }
 .Content { height: 100%; width: 100%; }

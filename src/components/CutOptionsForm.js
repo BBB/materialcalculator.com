@@ -1,96 +1,102 @@
 import React from 'react';
 
 import FormInput from 'components/forms/FormInput';
+import LengthInput from 'components/LengthInput';
+import Col from 'components/grid/Col';
+import Row from 'components/grid/Row';
 
 const CutOptionsForm = ({ onChange, formData }) => {
   const formInputStyles = require('components/forms/FormInput.scss');
   const styles = require('./CutOptionsForm.scss');
+  const autoWidth = { xs: 'auto' };
   return (
     <form className={styles.CutOptionsForm}>
       <h3>Material Size</h3>
       <div>
-        <FormInput
-          label="Width"
-          inputProps={{
-            type: 'number',
-            value: formData.materialSize.w,
-            onChange: (e) => {
-              const newMaterialSize = {
+        <FormInput label="Width">
+          <LengthInput
+            value={formData.materialSize.w}
+            onChange={(w) => onChange({
+              materialSize: {
                 ...formData.materialSize,
-                w: Number(e.target.value),
-              };
-              onChange({ materialSize: newMaterialSize, });
-            }
-          }}
-        />
-        <FormInput
-          label="Height"
-          inputProps={{
-            type: 'number',
-            value: formData.materialSize.h,
-            onChange: (e) => {
-              const newMaterialSize = {
+                w,
+              },
+            })}
+          />
+        </FormInput>
+        <FormInput label="Height">
+          <LengthInput
+            value={formData.materialSize.h}
+            onChange={(h) => onChange({
+              materialSize: {
                 ...formData.materialSize,
-                h: Number(e.target.value),
-              };
-              onChange({ materialSize: newMaterialSize, });
-            }
-          }}
-        />
+                h,
+              },
+            })}
+          />
+        </FormInput>
       </div>
       <h3>Cut Margin</h3>
-      <FormInput
-        label="Size"
-        inputProps={{
-          type: 'number',
-          value: formData.margin,
-          onChange: (e) => onChange({ margin: Number(e.target.value), })
-        }}
-      />
+      <FormInput label="Size">
+        <LengthInput
+          value={formData.margin}
+          onChange={(margin) => onChange({
+            margin,
+          })}
+        />
+      </FormInput>
       <h3>Cut List</h3>
       {
         formData.cuts.map((cut, ix) => {
           const updateValue = (prop, value) => {
-            cut[prop] = Number(value);
+            cut[prop] = value;
             onChange(formData);
           };
           return (
             <div key={ix} className={styles.cut}>
-              <div className={formInputStyles.FormInput}>
-                <label>W</label>
-                <input
-                  {...{
-                    type: 'number',
-                    value: cut.w,
-                    onChange: (e) => updateValue('w', e.target.value),
-                  }}
-                />
-                <label>H</label>
-                <input
-                  {...{
-                    type: 'number',
-                    value: cut.h,
-                    onChange: (e) => updateValue('h', e.target.value),
-                  }}
-                />
-                <label>x</label>
-                <input
-                  {...{
-                    type: 'number',
-                    value: cut.count,
-                    onChange: (e) => updateValue('count', e.target.value),
-                  }}
-                />
-              </div>
-              {formData.cuts.length > 1 && (
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    formData.cuts.splice(ix, 1);
-                    onChange(formData);
-                  }}
-                >Remove</button>
-              )}
+              <Row className={formInputStyles.FormInput}>
+                <Col widths={autoWidth}>
+                  <FormInput label="W">
+                    <LengthInput
+                      onChange={(value) => updateValue('w', value)}
+                      value={cut.w}
+                    />
+                  </FormInput>
+                </Col>
+                <Col widths={autoWidth}>
+                  <FormInput label="H">
+                    <LengthInput
+                      onChange={(value) => updateValue('h', value)}
+                      value={cut.h}
+                    />
+                  </FormInput>
+                </Col>
+                <Col widths={autoWidth}>
+                  <FormInput label="x"
+                    inputProps={
+                      {
+                        type: 'number',
+                        value: cut.count,
+                        onChange: (e) => {
+                          cut.count = Number(e.target.value);
+                          onChange(formData);
+                        },
+                      }
+                    }
+                  />
+                </Col>
+                {formData.cuts.length > 1 && (
+                  <Col widths={autoWidth}>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        formData.cuts.splice(ix, 1);
+                        onChange(formData);
+                      }}
+                    >Remove</button>
+                  </Col>
+                )}
+              </Row>
             </div>
           );
         })
@@ -99,8 +105,14 @@ const CutOptionsForm = ({ onChange, formData }) => {
         onClick={(e) => {
           e.preventDefault();
           formData.cuts.push({
-            w: 10,
-            h: 10,
+            w: {
+              amount: 10,
+              unit: 'Millimeter',
+            },
+            h: {
+              amount: 10,
+              unit: 'Millimeter',
+            },
             count: 1,
           });
           onChange(formData);
