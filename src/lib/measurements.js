@@ -25,7 +25,7 @@ const UNIT_DEF = {
     name: 'Meter',
     alias: ['m'],
     type: LENGTH,
-    value: 100,
+    value: 1000,
     units: MILLIMETER,
   },
   CENTIMETER: {
