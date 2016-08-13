@@ -25,14 +25,14 @@ const UNIT_DEF = {
     name: 'Meter',
     alias: ['m'],
     type: LENGTH,
-    value: 1000,
+    value: 100,
     units: MILLIMETER,
   },
   CENTIMETER: {
     name: 'Centimeter',
     alias: ['cm'],
     type: LENGTH,
-    value: 100,
+    value: 10,
     units: MILLIMETER,
   },
   [MILLIMETER]: {
