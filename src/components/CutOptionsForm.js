@@ -81,6 +81,10 @@ const CutOptionsForm = ({ onChange, formData }) => {
                           cut.count = Number(e.target.value);
                           onChange(formData);
                         },
+                        style: {
+                          marginRight: 48,
+                          paddingRight: 0,
+                        }
                       }
                     }
                   />
