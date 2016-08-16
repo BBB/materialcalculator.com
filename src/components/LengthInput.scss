@@ -2,12 +2,18 @@
   display: flex;
   position: relative;
   button {
-    background-color: #e8f0fa !important;
+    background-color: #e8f0fa;
     border-radius: 0;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    color: #8196a2 !important;
-    padding-left: 0;
+    color: #8196a2;
+    font-size: 0.8em;
+    padding-top: 0.9em;
+    min-width: 22px;
+    text-align: center;
+    &:hover {
+      background-color: #C8D9EE;
+    }
   }
   input {
     border-top-right-radius: 0 !important;
