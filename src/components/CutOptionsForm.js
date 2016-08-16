@@ -90,17 +90,17 @@ const CutOptionsForm = ({ onChange, formData }) => {
                   />
                 </Col>
                 {formData.cuts.length > 1 && (
-                  <Col widths={autoWidth}>
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        formData.cuts.splice(ix, 1);
-                        onChange(formData);
-                      }}
-                    >Remove</button>
-                  </Col>
+                  <button
+                    className={styles.Remove}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      formData.cuts.splice(ix, 1);
+                      onChange(formData);
+                    }}
+                  >X</button>
                 )}
               </Row>
+              <i />
             </div>
           );
         })

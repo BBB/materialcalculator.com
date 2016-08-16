@@ -6,21 +6,45 @@
     text-align: right;
   }
 
-  > div {
-    border-bottom: 1px solid #3b465b;
-    padding-bottom: 1em;
+  > button {
+    margin-top: 1em;
   }
 
   .cut {
-    padding: 1em 0;
-    margin-bottom: 1em;
-    border-bottom: 2px solid #3e4960;
-    button {
-      background: #eceff1;
-      color: #8096a2;
+    margin-left: 1em;
+    position: relative;
+    border-left: 2px solid #FFF;
+    background: #171C27;
+    i {
+      $width: 16px;
+      display: block;
+      width: $width;
+      height: $width;
+      border: 2px solid #FFF;
+      background: #333c4e;
+      border-radius: $width / 2;
+      position: absolute;
+      top: calc(50% - #{$width});
+      left: -$width / 2;
     }
-    button:hover {
-      background: #dbdee0;
+    > div { // .row
+      padding: 1em 0 1em 1em;
+      margin: 0;
+      border-bottom: 2px solid #3e4960;
+      border-top: 2px solid #191919;
     }
   }
+}
+
+button.Remove {
+  background: #333c4e;
+  color: #ffffff;
+  position: absolute;
+  top: 0.5em;
+  right: -13px;
+  border-radius: 20px;
+  padding: 0.2em 0.5em;
+}
+button.Remove:hover {
+  background: #dbdee0;
 }
