@@ -6,6 +6,8 @@ import CutRenderer from 'components/CutRenderer';
 import CutOptionsForm from 'components/CutOptionsForm';
 import Footer from 'components/Footer';
 
+import { sidebarWidth } from 'lib/localStorage';
+
 let BinPackerWorker;
 let binPackerWorker = {
   postMessage() {},
@@ -74,6 +76,8 @@ class App extends Component {
           split="vertical"
           resizerStyle={styles.Resizer}
           defaultSize={'40%'}
+          defaultSize={ sidebarWidth() }
+          onChange={ size => sidebarWidth(size) }
         >
           <div className={styles.Sidebar}>
             <p>Calculate the number of pieces of material you will need.</p>
