@@ -5,11 +5,16 @@ html, body, #content, div[data-reactroot], .App { height: 100%; padding: 0; marg
 .Footer { overflow-y: auto; height: 30px; }
 
 .Header {
-  background-color: #28303e;
+  background-color: #ffffff;
   margin: 0;
-  padding: 0.1em 1em;
   color: #dee7f8;
-  border-bottom: 1px solid #1c262f;
+  h1 {
+    background: #15a4fa;
+    display: inline-block;
+    padding: 0.7em 1em;
+    margin: 0;
+    color: #FFF;
+  }
 }
 
 
