@@ -18,7 +18,7 @@ module.exports = Object.assign({
     head: {
       titleTemplate: 'Material Calculator: %s',
       meta: [
-        { name: 'description', content: 'Calculate the number of pieces of material you will need and reduce cost as well as wastage', },
+        { name: 'description', content: 'Calculate the number of pieces of material you will need and reduce cost as well as wastage. Ideal for interior designers and joiners', },
         { charset: 'utf-8', },
       ],
     },
