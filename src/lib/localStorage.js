@@ -1,8 +1,10 @@
+const storage = global.localStorage || { getItem() {}, setItem() {} };
+
 const sidebarWidth = (val) => {
   if (val) {
-    return localStorage.setItem('sidebarWidth', val);
+    return storage.setItem('sidebarWidth', val);
   }
-  const storedVal = localStorage.getItem('sidebarWidth');
+  const storedVal = storage.getItem('sidebarWidth');
   return storedVal || '40%';
 };
 
