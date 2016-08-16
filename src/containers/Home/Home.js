@@ -80,7 +80,6 @@ class App extends Component {
           onChange={ size => sidebarWidth(size) }
         >
           <div className={styles.Sidebar}>
-            <p>Calculate the number of pieces of material you will need.</p>
             <CutOptionsForm
               onChange={(data) => {
                 this.setState(data);
