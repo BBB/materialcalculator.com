@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import ga from 'react-ga';
 import { asyncConnect } from 'redux-async-connect';
 
+import { sidebarWidth } from 'lib/localStorage';
 import config from '../../config';
 
 // this is required!
@@ -43,7 +44,13 @@ export default class App extends Component {
       <div className={styles.App}>
         <Helmet {...config.app.head}/>
         <div className={styles.Header}>
-          <h1>Material Calculator</h1>
+          <h1
+            style={{
+              width: sidebarWidth(),
+            }}
+          >
+            Material Calculator
+          </h1>
         </div>
         { this.props.children }
       </div>
