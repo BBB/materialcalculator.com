@@ -1,7 +1,7 @@
 {
   "name": "materialcalculator",
   "private": true,
-  "version": "2.3.0",
+  "version": "2.3.1",
   "main": "bin/server.js",
   "scripts": {
     "start": "concurrent --kill-others \"npm run start-prod\"",
